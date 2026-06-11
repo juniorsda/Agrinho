@@ -1,57 +1,17 @@
-<!DOCTYPE html>
+        <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz do Agrinho</title>
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #e8f5e9; /* Verde claro que lembra o campo */
-            color: #2e7d32;
-            text-align: center;
-            padding: 20px;
-        }
-        .container {
-            max-width: 600px;
-            background: white;
-            margin: 50px auto;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
+        body { font-family: 'Arial', sans-serif; background-color: #e8f5e9; color: #2e7d32; text-align: center; padding: 20px; }
+        .container { max-width: 600px; background: white; margin: 50px auto; padding: 30px; border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
         h1 { color: #1b5e20; }
-        .btn-opcao {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            font-size: 18px;
-            background-color: #a5d6a7;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.2s;
-            color: #1b5e20;
-            font-weight: bold;
-        }
+        .btn-opcao { display: block; width: 100%; padding: 12px; margin: 10px 0; font-size: 18px; background-color: #a5d6a7; border: none; border-radius: 8px; cursor: pointer; transition: 0.2s; color: #1b5e20; font-weight: bold; }
         .btn-opcao:hover { background-color: #81c784; }
-        #mensagem {
-            font-size: 20px;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-        #btn-proxima {
-            margin-top: 20px;
-            padding: 10px 25px;
-            font-size: 16px;
-            background-color: #1b5e20;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            display: none;
-        }
+        #mensagem { font-size: 20px; font-weight: bold; margin-top: 20px; }
+        #btn-proxima { margin-top: 20px; padding: 10px 25px; font-size: 16px; background-color: #1b5e20; color: white; border: none; border-radius: 5px; cursor: pointer; display: none; }
     </style>
 </head>
 <body>
@@ -66,26 +26,16 @@
 </div>
 
 <script>
-    // Lista de perguntas, opções e a resposta correta
+    // COLOQUE SUAS PERGUNTAS AQUI DENTRO SEM CORTAR AS FRASES
     const perguntas = [
         {
-            q: "Qual é o principal objetivo do programa Agrinho?",
-            opcoes: ["Ensinar a jogar videogame", "Levar educação sobre sustentabilidade, saúde e cidadania", "Vender produtos do campo"],
-            correta: 1
+            q: "Escreva sua pergunta 1 aqui entre aspas",
+            opcoes: ["Opção 1", "Opção 2", "Opção 3"],
+            correta: 0 // Mude para 0 se a primeira for a certa, 1 para a segunda, etc.
         },
         {
-            q: "O que significa sustentabilidade no campo?",
-            opcoes: ["Produzir alimentos protegendo a natureza para o futuro", "Gastar toda a água disponível", "Desmatar florestas para plantar mais"],
-            correta: 0
-        },
-        {
-            q: "Qual dessas atitudes ajuda a preservar a água nas fazendas?",
-            opcoes: ["Deixar as torneiras abertas", "Proteger as nascentes dos rios e usar irrigação inteligente", "Jogar lixo perto dos rios"],
-            correta: 1
-        },
-        {
-            q: "O programa Agrinho é promovido por qual instituição?",
-            opcoes: ["Uma loja de brinquedos", "SENAR (Serviço Nacional de Aprendizagem Rural)", "Uma empresa de internet"],
+            q: "Escreva sua pergunta 2 aqui entre aspas",
+            opcoes: ["Opção 1", "Opção 2", "Opção 3"],
             correta: 1
         }
     ];
@@ -94,7 +44,6 @@
     let pontuacao = 0;
 
     function carregarPergunta() {
-        // Limpa mensagens e esconde o botão de próxima
         document.getElementById("mensagem").innerText = "";
         document.getElementById("btn-proxima").style.display = "none";
         
@@ -102,9 +51,8 @@
         document.getElementById("pergunta").innerText = infoPergunta.q;
         
         let containerOpcoes = document.getElementById("opcoes");
-        containerOpcoes.innerHTML = ""; // Limpa os botões anteriores
+        containerOpcoes.innerHTML = "";
 
-        // Cria os botões para cada opção de resposta
         infoPergunta.opcoes.forEach((opcao, index) => {
             let botao = document.createElement("button");
             botao.innerText = opcao;
@@ -118,7 +66,6 @@
         let infoPergunta = perguntas[indiceAtual];
         let msg = document.getElementById("mensagem");
         
-        // Desativa os botões para o jogador não clicar de novo
         let botoes = document.querySelectorAll(".btn-opcao");
         botoes.forEach(b => b.disabled = true);
 
@@ -127,7 +74,7 @@
             msg.style.color = "#2e7d32";
             pontuacao++;
         } else {
-            msg.innerText = "❌ Resposta Errada! A correta era: " + infoPergunta.opcoes[infoPergunta.correta];
+            msg.innerText = "❌ Resposta Errada!";
             msg.style.color = "#c62828";
         }
 
@@ -139,5 +86,16 @@
         if (indiceAtual < perguntas.length) {
             carregarPergunta();
         } else {
-            // Fim do jogo
-            document.getElementById("container").innerHTML =
+            document.querySelector(".container").innerHTML = `
+                <h1>Fim do Quiz! 🥳</h1>
+                <p style="font-size: 22px;">Você acertou <strong>${pontuacao}</strong> de <strong>${perguntas.length}</strong> perguntas.</p>
+                <button class="btn-opcao" onclick="location.reload()">Jogar Novamente</button>
+            `;
+        }
+    }
+
+    carregarPergunta();
+</script>
+
+</body>
+</html>
