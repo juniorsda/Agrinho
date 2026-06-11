@@ -30,7 +30,7 @@
     const perguntas = [
         {
             q: "No contexto de um agro forte e sustentável, qual das seguintes práticas promove simultaneamente o aumento da produtividade a longo prazo e a conservação do solo?",
-            opcoes: ["Plantio direto e rotação de culturas.", "Aragem profunda e contínua associada ao monocultivo.", "Uso exclusivo de fertilizantes sintéticos sem análise prévia do solo."],
+            opcoes: ["Aragem profunda e contínua associada ao monocultivo.", "Plantio direto e rotação de culturas.", "Uso exclusivo de fertilizantes sintéticos sem análise prévia do solo."],
             correta: 1 
         },
         {
@@ -70,11 +70,11 @@
         botoes.forEach(b => b.disabled = true);
 
         if (indiceEscolhido === infoPergunta.correta) {
-            msg.innerText = "✅ Resposta Correta! Muito bem!";
+            msg.innerText = "✅ Parabéns você acertou!";
             msg.style.color = "#2e7d32";
             pontuacao++;
         } else {
-            msg.innerText = "❌ Resposta Errada!";
+            msg.innerText = "❌ Ops você errou";
             msg.style.color = "#c62828";
         }
 
